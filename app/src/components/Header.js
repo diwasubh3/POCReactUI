@@ -1,3 +1,4 @@
+import React from "react";
 import { H1 } from '@leafygreen-ui/typography';
 import { MongoDBLogoMark } from '@leafygreen-ui/logo';
 

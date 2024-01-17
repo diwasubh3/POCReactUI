@@ -1,6 +1,6 @@
 import "./styles.css";
 import "./fonts.css";
-
+import React, { Component }  from 'react';
 import LeafygreenProvider from '@leafygreen-ui/leafygreen-provider';
 import Layout from "./components/Layout";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
