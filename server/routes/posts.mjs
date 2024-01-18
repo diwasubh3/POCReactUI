@@ -16,6 +16,7 @@ router.get("/", async (req, res) => {
 
 // Fetches the latest posts
 router.get("/latest", async (req, res) => {
+  console.log("Get latest call received");
   let collection = await db.collection("posts");
   let results = await collection.aggregate([
     {"$project": {"author": 1, "title": 1, "tags": 1, "date": 1}},
@@ -33,6 +34,7 @@ router.get("/latest", async (req, res) => {
 
 // Get a single post
 router.get("/:id", async (req, res) => {
+  console.log("Get by ID call received");
   let collection = await db.collection("posts");
   let query = {_id: ObjectId(req.params.id)};
   let result = await collection.findOne(query);
@@ -43,6 +45,7 @@ router.get("/:id", async (req, res) => {
 
 // Add a new document to the collection
 router.post("/", async (req, res) => {
+  console.log("Add a new document to the collection - post call received");
   let collection = await db.collection("posts");
   let newDocument = req.body;
   newDocument.date = new Date();
@@ -52,6 +55,7 @@ router.post("/", async (req, res) => {
 
 // Update the post with a new comment
 router.patch("/comment/:id", async (req, res) => {
+  console.log("Update the post with a new comment - patch call received");
   const query = { _id: ObjectId(req.params.id) };
   const updates = {
     $push: { comments: req.body }
@@ -65,6 +69,7 @@ router.patch("/comment/:id", async (req, res) => {
 
 // Delete an entry
 router.delete("/:id", async (req, res) => {
+  console.log("Delete an entry - Delete call received");
   const query = { _id: ObjectId(req.params.id) };
 
   const collection = db.collection("posts");

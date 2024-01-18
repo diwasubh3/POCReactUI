@@ -8,6 +8,7 @@ export default function App() {
 
   useEffect(() => {
     const loadPosts = async () => {
+      console.log("Load Post call initiated from UI")
       let results = await fetch(`${baseUrl}/posts/latest`).then(resp => resp.json());
       setPosts(results);
     }
