@@ -1,11 +1,11 @@
 import express from "express";
 import db from "../db/conn.mjs";
 import { ObjectId } from "mongodb";
-
 const router = express.Router();
 
 // Get a list of 50 posts
 router.get("/", async (req, res) => {
+  console.log("Get call received");
   let collection = await db.collection("posts");
   let results = await collection.find({})
     .limit(50)
@@ -22,6 +22,12 @@ router.get("/latest", async (req, res) => {
     {"$sort": {"date": -1}},
     {"$limit": 3}
   ]).toArray();
+
+  // let results = ([ { "squadName": "Super hero squad", "homeTown": "Metro City", "formed": 2016,  "secretBase": "Super tower","active": true},
+  //                 { "squadName": "Jai Shivaji squad", "homeTown": "Kolhapur City", "formed": 1678,  "secretBase": "Gondhana tower","active": true},
+  //                 { "squadName": "Jai Malhar squad", "homeTown": "Pune City", "formed": 1785,  "secretBase": "Malhar tower","active": true},
+  //                 { "squadName": "Goldentree LLC", "homeTown": "Newyork", "formed": 1925,  "secretBase": "Mahendra tower","active": true}
+  //               ]).toArray();
   res.send(results).status(200);
 });
 
